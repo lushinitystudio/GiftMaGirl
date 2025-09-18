@@ -28,7 +28,7 @@ const Reward = () => {
   const [thankYouMessage, setThankYouMessage] = useState("");
   const [giftCount, setGiftCount] = useState(0);
   const [showSpecialReward, setShowSpecialReward] = useState(false);
-  const [countdown, setCountdown] = useState(180); // 3 minutes in seconds
+  const [countdown, setCountdown] = useState(60); // 1 minutes in seconds
   const [showMessage, setShowMessage] = useState(false);
   const [showOnlineStatus, setShowOnlineStatus] = useState(false);
   const [showReward, setShowReward] = useState(false);
@@ -59,7 +59,7 @@ const Reward = () => {
 
   const startRewardSequence = () => {
     // Random time between 30 seconds and 3 minutes
-    const randomTime = Math.floor(Math.random() * 150) + 30; // 30-180 seconds
+    const randomTime = Math.floor(Math.random() * 50) + 10;
     
     const timer = setInterval(() => {
       setCountdown(prev => {
