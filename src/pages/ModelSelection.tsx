@@ -32,17 +32,21 @@ const modelsData: Model[] = [
 
 ];
 
+function getRandomModels(all: Model[], count: number) {
+  const shuffled = [...all].sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, count)
+}
 
 const ModelSelection = () => {
   const navigate = useNavigate();
-  const [models, setModels] = useState<Model[]>(modelsData);
+  const [models, setModels] = useState<Model[]>(getRandomModels(modelsData, 5));
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [isShuffling, setIsShuffling] = useState(false);
 
 const handleShuffle = () => {
   setIsShuffling(true);
   setTimeout(() => {
-    setModels((prev) => [...prev].sort(() => Math.random() - 0.5)); // simple shuffle
+    setModels(getRandomModels(modelsData, 5)); // always pick 5 fresh random ones
     setSelectedModel(null);
     setIsShuffling(false);
   }, 1000);
