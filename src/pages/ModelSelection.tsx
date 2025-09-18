@@ -130,10 +130,10 @@ const handleShuffle = () => {
 
         {/* Circular Model Layout */}
         <div className="relative w-full max-w-4xl mx-auto">
-          <div className="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
+          <div className="relative w-[420px] h-[420px] md:w-[480px] md:h-[480px] mx-auto">
             {models.map((model, index) => {
               const angle = (index * 72) - 90; // 360/5 = 72 degrees per model, -90 to start at top
-              const radius = 140;
+              const radius = 170;
               const x = Math.cos((angle * Math.PI) / 180) * radius;
               const y = Math.sin((angle * Math.PI) / 180) * radius;
               
@@ -153,7 +153,7 @@ const handleShuffle = () => {
                 >
                   {/* Model Card - Circular */}
                   <div
-                    className={`relative w-28 h-28 md:w-32 md:h-32 rounded-full border-4 transition-all duration-300 overflow-hidden ${
+                    className={`relative w-36 h-36 md:w-40 md:h-40 rounded-full border-4 transition-all duration-300 overflow-hidden ${
                       selectedModel?.id === model.id
                         ? 'border-primary neon-glow-primary scale-110'
                         : 'border-border/30 hover:border-primary/50 hover:neon-glow-primary'
