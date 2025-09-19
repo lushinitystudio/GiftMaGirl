@@ -58,7 +58,6 @@ const Reward = () => {
   }, [navigate]);
 
   const startRewardSequence = () => {
-    // Random time between 30 seconds and 3 minutes
     const randomTime = Math.floor(Math.random() * 50) + 10;
     
     const timer = setInterval(() => {

@@ -12,6 +12,8 @@ import Checkout from "./pages/Checkout";
 import Reward from "./pages/Reward";
 import SpecialReward from "./pages/SpecialReward";
 import NotFound from "./pages/NotFound";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import Footer from "./components/ui/Footer";
 
 const queryClient = new QueryClient();
 
@@ -29,10 +31,13 @@ const App = () => (
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/special-reward" element={<SpecialReward />} />
+
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </TooltipProvider>
   </QueryClientProvider>
 );

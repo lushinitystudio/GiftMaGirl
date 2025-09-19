@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Shield, Heart, Sparkles } from "lucide-react";
 import { useState } from "react";
@@ -63,7 +64,17 @@ const ConsentGate = () => {
                 htmlFor="terms" 
                 className="text-foreground cursor-pointer leading-relaxed"
               >
-                I accept the Terms & Conditions and understand this is an entertainment platform
+                I accept the{" "}
+                <a
+                  href="/terms-and-conditions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white font-bold hover:text-primary animate-glow-pulse"
+                >
+                  Terms & Conditions
+                </a>
+                    {" "}
+                  and understand this is an entertainment platform.
               </label>
             </div>
 

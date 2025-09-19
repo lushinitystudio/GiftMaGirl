@@ -41,12 +41,12 @@ const Landing = () => {
           {/* Main headline */}
           <div className="space-y-6">
             <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight">
-              Choose Your Dream Girl
+              <span className="text-gradient-secondary">Choose Your Dream Girl</span>
               <br />
-              <span className="text-gradient-secondary">& Send a Gift</span>
+              & Send a Gift
             </h2>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-              Experience the thrill of giving with our addictive gifting platform. 
+              Experience the thrill of giving with our gifting platform. 
               Select from stunning models and send amazing gifts!
             </p>
           </div>
@@ -73,8 +73,8 @@ const Landing = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
             <div className="bg-gradient-card p-6 rounded-xl border border-border/50 neon-glow-primary">
               <Sparkles className="w-12 h-12 text-primary mx-auto mb-4 animate-pulse" />
-              <h3 className="text-xl font-bold text-primary mb-2">AI Models</h3>
-              <p className="text-muted-foreground">Beautiful AI-generated models from around the world</p>
+              <h3 className="text-xl font-bold text-primary mb-2"></h3>
+              <p className="text-muted-foreground">Models will be notified that you sent them</p>
             </div>
             
             <div className="bg-gradient-card p-6 rounded-xl border border-border/50 neon-glow-secondary">
@@ -86,7 +86,7 @@ const Landing = () => {
             <div className="bg-gradient-card p-6 rounded-xl border border-border/50 neon-glow-accent">
               <Heart className="w-12 h-12 text-accent mx-auto mb-4 animate-pulse" />
               <h3 className="text-xl font-bold text-accent mb-2">Instant Rewards</h3>
-              <p className="text-muted-foreground">Get personal thank you messages and exclusive content</p>
+              <p className="text-muted-foreground">Once you chose, we will handle the shipment of the order on your behalf</p>
             </div>
           </div>
         </div>
