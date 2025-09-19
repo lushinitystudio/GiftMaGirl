@@ -154,7 +154,7 @@ const Reward = () => {
                 {formatTime(countdown)}
               </div>
               <p className="text-sm text-muted-foreground mt-4 animate-pulse">
-                She's notified! She'll soo send something special for you...
+                She's notified! She'll soon send something special for you...
               </p>
             </div>
           </div>
