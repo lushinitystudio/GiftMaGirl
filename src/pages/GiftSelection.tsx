@@ -195,7 +195,13 @@ const GiftSelection = () => {
           </div>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-black text-white text-center mb-12 neon-glow-primary">
+        <h1
+          className="text-4xl md:text-6xl font-black text-white text-center flex-1 relative mb-8"
+          style={{
+            textShadow: '0 0 8px #00f0ff, 0 0 16px #ff3fff, 0 0 24px #00ff9f',
+            WebkitTextFillColor: 'white'
+          }}
+        >
           Choose Your Gift
         </h1>
 
