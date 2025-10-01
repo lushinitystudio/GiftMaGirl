@@ -132,8 +132,14 @@ const Reward = () => {
         <div className="space-y-8 mb-12">
           <div className="flex items-center justify-center gap-4">
             <Gift className="w-16 h-16 text-primary animate-bounce" />
-            <h1 className="text-4xl md:text-6xl font-black text-gradient-primary">
-              Gift Delivered!
+            <h1
+              className="text-4xl md:text-6xl font-black text-white text-center flex-1 relative mb-8"
+              style={{
+                textShadow: '0 0 8px #00f0ff, 0 0 16px #ff3fff, 0 0 24px #00ff9f',
+                WebkitTextFillColor: 'white'
+              }}
+            >
+              Gift Delivered
             </h1>
             <Sparkles className="w-16 h-16 text-secondary animate-spin-slow" />
           </div>
@@ -183,6 +189,7 @@ const Reward = () => {
                     <p className="text-lg text-foreground mb-2">{thankYouMessage}</p>
                     <p className="text-sm text-primary font-bold">- {selectedModel.name}</p>
                   </div>
+                  <p className="text-lg text-foreground mb-2">*****Your reward is here...*****</p>
                 </div>
               </div>
             </div>
@@ -233,7 +240,7 @@ const Reward = () => {
                     <p className="text-lg text-foreground mb-6">
                       Congratulations! You've sent 3+ gifts and unlocked exclusive content!
                     </p>
-                    <Button
+                    {/* <Button
                       variant="gold"
                       size="lg"
                       onClick={() => navigate('/special-reward')}
@@ -242,7 +249,7 @@ const Reward = () => {
                       <Star className="w-5 h-5" />
                       View Special Reward
                       <Sparkles className="w-5 h-5" />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               )}

@@ -108,7 +108,7 @@ const Checkout = () => {
             WebkitTextFillColor: 'white'
           }}
         >
-          Complete Your Gift
+          Compete Your Gift
         </h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -205,7 +205,16 @@ const Checkout = () => {
                   </div>
 
                   {/* Payment Button */}
-                  
+                  <Button
+                    variant="casino"
+                    size="xl"
+                    onClick={handlePayment}
+                    className="w-full animate-neon-pulse"
+                  >
+                    <CreditCard className="w-6 h-6" />
+                    Pay ${finalTotal} Now
+                    <Sparkles className="w-6 h-6" />
+                  </Button>
                 </div>
               ) : (
                 <div className="text-center space-y-6">
