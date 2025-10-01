@@ -240,7 +240,7 @@ const Reward = () => {
                     <p className="text-lg text-foreground mb-6">
                       Congratulations! You've sent 3+ gifts and unlocked exclusive content!
                     </p>
-                    <Button
+                    {/* <Button
                       variant="gold"
                       size="lg"
                       onClick={() => navigate('/special-reward')}
@@ -249,7 +249,7 @@ const Reward = () => {
                       <Star className="w-5 h-5" />
                       View Special Reward
                       <Sparkles className="w-5 h-5" />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               )}
