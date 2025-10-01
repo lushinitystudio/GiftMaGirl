@@ -67,7 +67,13 @@ const SpecialReward = () => {
         <div className="text-center space-y-8 mb-12">
           <div className="flex items-center justify-center gap-4">
             <Crown className="w-16 h-16 text-gold animate-bounce" />
-            <h1 className="text-4xl md:text-6xl font-black text-gradient-primary">
+            <h1
+              className="text-4xl md:text-6xl font-black text-white text-center flex-1 relative mb-8"
+              style={{
+                textShadow: '0 0 8px #00f0ff, 0 0 16px #ff3fff, 0 0 24px #00ff9f',
+                WebkitTextFillColor: 'white'
+              }}
+            >
               VIP Exclusive
             </h1>
             <Crown className="w-16 h-16 text-gold animate-bounce" style={{ animationDelay: '0.5s' }} />
