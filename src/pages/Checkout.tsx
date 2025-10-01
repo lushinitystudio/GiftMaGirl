@@ -101,7 +101,7 @@ const Checkout = () => {
           </Button>
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-black text-gradient-primary text-center mb-12">
+        <h1 className="text-4xl md:text-6xl font-black text-white text-center mb-12 neon-glow-primary">
           Complete Your Gift
         </h1>
 
