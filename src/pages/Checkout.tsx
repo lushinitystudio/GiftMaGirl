@@ -205,7 +205,7 @@ const Checkout = () => {
                   </div>
 
                   {/* Payment Button */}
-                  <Button
+                  {/* <Button
                     variant="casino"
                     size="xl"
                     onClick={handlePayment}
@@ -214,7 +214,7 @@ const Checkout = () => {
                     <CreditCard className="w-6 h-6" />
                     Pay ${finalTotal} Now
                     <Sparkles className="w-6 h-6" />
-                  </Button>
+                  </Button> */}
                 </div>
               ) : (
                 <div className="text-center space-y-6">
