@@ -1,17 +1,22 @@
+import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
+import App from "./App";
 import "./index.css";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
+const initialOptions = {
+  clientId: "ARHFyDSRumCxg2r_RcqBcQXIeqfEYXWdQ0nEmOPh8BVsk9J6Tie22Bnb8fJeYhOFbf9iZTdIjJ2joiQ9",
+  currency: "USD",
+};
 
 const root = document.getElementById("root");
 
 if (root) {
-  // Add cursor tracking for interactive background
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    document.documentElement.style.setProperty('--mouse-x', `${x}%`);
-    document.documentElement.style.setProperty('--mouse-y', `${y}%`);
-  });
-
-  createRoot(root).render(<App />);
+  createRoot(root).render(
+    <React.StrictMode>
+      <PayPalScriptProvider options={initialOptions}>
+        <App />
+      </PayPalScriptProvider>
+    </React.StrictMode>
+  );
 }

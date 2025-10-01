@@ -1,7 +1,12 @@
+import QRCode from "qrcode.react";
+import PayButton from "@/components/PayButton";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, CreditCard, Shield, Sparkles, Gift } from "lucide-react";
 import { useState, useEffect } from "react";
+
+//import { QRCodeSVG } from 'qrcode.react';
+//console.log('selectedModel:', selectedModel, 'cart:', cart);
 
 interface Gift {
   id: string;
@@ -25,22 +30,35 @@ const Checkout = () => {
   const [selectedModel, setSelectedModel] = useState<Model | null>(null);
   const [cart, setCart] = useState<Gift[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
 
   useEffect(() => {
-    const model = localStorage.getItem('selectedModel');
-    const cartData = localStorage.getItem('cart');
-    
-    if (model && cartData) {
-      setSelectedModel(JSON.parse(model));
-      setCart(JSON.parse(cartData));
-    } else {
-      navigate('/models');
-    }
-  }, [navigate]);
+  const model = localStorage.getItem('selectedModel');
+  const cartData = localStorage.getItem('cart');
+
+  if (model && cartData) {
+    const parsedModel = JSON.parse(model);
+    const parsedCart = JSON.parse(cartData);
+
+    setSelectedModel(parsedModel);
+    setCart(parsedCart);
+
+    // Generate UPI QR code
+    const upiLink = "upi://pay?pa=7837736168@pz&pn=GiftMaGirl&cu=INR&tn=Gift+Reward";
+    import('qrcode')
+      .then(QRCode => QRCode.toDataURL(upiLink, { width: 200, margin: 2 }))
+      .then(url => setQrCodeUrl(url))
+      .catch(err => console.error('Error generating QR code:', err));
+  } else {
+    navigate('/models');
+  }
+}, [navigate]);
+
 
   const totalPrice = cart.reduce((sum, gift) => sum + gift.price, 0);
   const processingFee = Math.round(totalPrice * 0.03); // 3% processing fee
   const finalTotal = totalPrice + processingFee;
+  const upiLink = "upi://pay?pa=7837736168@pz&pn=GiftMaGirl&cu=INR&tn=Gift+Reward";
 
   const handlePayment = async () => {
     setIsProcessing(true);
@@ -149,43 +167,35 @@ const Checkout = () => {
 
               {!isProcessing ? (
                 <div className="space-y-6">
-                  {/* Stripe Payment Form Placeholder */}
-                  <div className="bg-background/20 p-6 rounded-xl">
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">
-                          Card Number
-                        </label>
-                        <div className="w-full h-12 bg-input rounded-lg border border-border flex items-center px-4">
-                          <span className="text-muted-foreground">**** **** **** ****</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-foreground mb-2">
-                            Expiry
-                          </label>
-                          <div className="w-full h-12 bg-input rounded-lg border border-border flex items-center px-4">
-                            <span className="text-muted-foreground">MM/YY</span>
-                          </div>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-foreground mb-2">
-                            CVC
-                          </label>
-                          <div className="w-full h-12 bg-input rounded-lg border border-border flex items-center px-4">
-                            <span className="text-muted-foreground">***</span>
-                          </div>
-                        </div>
-                      </div>
+                  {/* UPI Payment */}
+                  <div className="bg-background/20 p-6 rounded-xl text-center space-y-6">
+                    <p className="text-muted-foreground">Scan the QR or tap below to pay</p>
+                    
+                    <div className="flex justify-center">
+                      {qrCodeUrl && (
+                        <img src={qrCodeUrl} alt="UPI QR Code" className="w-48 h-48 mx-auto" />
+                      )}
                     </div>
+
+                    <a
+                      href={upiLink}
+                      className="inline-block mt-4 px-6 py-3 bg-primary text-white font-semibold rounded-lg shadow hover:bg-primary/80 transition"
+                    >
+                      Pay Now with UPI
+                    </a>
                   </div>
+
+                    {/* PayPal Payment */}
+                    <div className="bg-background/20 p-6 rounded-xl text-center space-y-6">
+                      <p className="text-muted-foreground">Or pay securely with PayPal</p>
+                      {!isProcessing && <PayButton amount={finalTotal.toFixed(2)} />}
+                    </div>
 
                   {/* Security Badge */}
                   <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                     <Shield className="w-4 h-4 text-accent" />
-                    <span>Secured by Stripe • SSL Encrypted</span>
+                    <span>Secure UPI Payment • SSL Encrypted</span>
+
                   </div>
 
                   {/* Payment Button */}
