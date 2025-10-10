@@ -26,9 +26,9 @@ const modelsData: Model[] = [
   { id: "model-11", name: "Nina", age: 22, nationality: "Japanese", image: "/models/nina.png" },
   { id: "model-12", name: "Viktoria", age: 23, nationality: "Russian", image: "/models/viktoria.png" },
   { id: "model-13", name: "Chloe", age: 20, nationality: "French", image: "/models/chloe.png" },
-  { id: "model-14", name: "Anika", age: 24, nationality: "German", image: "/models/anika.png" },
+  { id: "model-14", name: "Lena", age: 24, nationality: "German", image: "/models/lena.png" },
   { id: "model-15", name: "Valeria", age: 22, nationality: "Spanish", image: "/models/valeria.png" },
-  { id: "model-16", name: "Suhani", age: 26, nationality: "Indian", image: "/suhani.png" },
+  { id: "model-16", name: "Suhani", age: 26, nationality: "Indian", image: "/models/suhani.png" },
 
 ];
 
