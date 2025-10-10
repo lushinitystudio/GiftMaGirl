@@ -32,7 +32,7 @@ const Checkout = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
 
-  useEffect(() => {
+useEffect(() => {
   const model = localStorage.getItem('selectedModel');
   const cartData = localStorage.getItem('cart');
 
@@ -42,23 +42,37 @@ const Checkout = () => {
 
     setSelectedModel(parsedModel);
     setCart(parsedCart);
-
-    // Generate UPI QR code
-    const upiLink = "upi://pay?pa=7837736168@pz&pn=GiftMaGirl&cu=INR&tn=Gift+Reward";
-    import('qrcode')
-      .then(QRCode => QRCode.toDataURL(upiLink, { width: 200, margin: 2 }))
-      .then(url => setQrCodeUrl(url))
-      .catch(err => console.error('Error generating QR code:', err));
   } else {
-    navigate('/models');
+    navigate("/models");
   }
 }, [navigate]);
 
+const totalPrice = cart.reduce((sum, gift) => sum + gift.price, 0);
+const processingFee = Math.round(totalPrice * 0.03); // 3% processing fee
+const finalTotal = totalPrice + processingFee;
+const usdToInrRate = 88.7; // static conversion rate
+const totalInInr = (finalTotal * usdToInrRate).toFixed(2);
+const upiLink = `upi://pay?pa=7837736168@pz&pn=GiftMaGirl&am=${totalInInr}&cu=INR&tn=Gift+Reward`;
 
-  const totalPrice = cart.reduce((sum, gift) => sum + gift.price, 0);
-  const processingFee = Math.round(totalPrice * 0.03); // 3% processing fee
-  const finalTotal = totalPrice + processingFee;
-  const upiLink = "upi://pay?pa=7837736168@pz&pn=GiftMaGirl&cu=INR&tn=Gift+Reward";
+
+useEffect(() => {
+  if (!cart || cart.length === 0) return;
+
+  
+  let isMounted = true;
+
+  import("qrcode")
+    .then((QRCode) => QRCode.toDataURL(upiLink, { width: 200, margin: 2 }))
+    .then((url) => {
+      if (isMounted) setQrCodeUrl(url);
+    })
+    .catch((err) => console.error("Error generating QR code:", err));
+
+  return () => {
+    isMounted = false;
+  };
+}, [cart, finalTotal]);
+
 
   const handlePayment = async () => {
     setIsProcessing(true);
